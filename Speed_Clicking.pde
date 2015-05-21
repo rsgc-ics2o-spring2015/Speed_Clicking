@@ -1,6 +1,7 @@
 // Global variables
 float leftBoundary, rightBoundary, topBoundary, bottomBoundary;  // Boundaries of click targets
-int clicks;    // Tracks how many clicks made in current game
+int clicks;      // Tracks how many clicks made in current game
+float timeLeft = 5;  // Time left in current round
 
 // Runs once
 void setup() {
@@ -17,8 +18,6 @@ void setup() {
   // Text alignment – horizontally and vertically centred
   textAlign(CENTER, CENTER);
   
-  // Fill 
-    
 }
 
 // Runs repeatedly to create animation
@@ -39,13 +38,21 @@ void draw() {
   
   // Report clicks
   text("Clicks: " + clicks, 0, 0, width, height / 5);
+
+  // Update time left
+  if (clicks > 0 && frameCount % 60 == 0 && timeLeft > 0) {
+    timeLeft = timeLeft - 1;
+  }
+
+  // Report time left in round
+  text("Time left in round: " + (int) timeLeft, 0, 0, width, height / 5 * 2);
 }
 
 // Responds to mouse clicks
 void mousePressed() {
   
   // Verify that click was inside boundaries of target
-  if (mouseX > leftBoundary && mouseX < rightBoundary && mouseY > topBoundary && mouseY < bottomBoundary) {
+  if (mouseX > leftBoundary && mouseX < rightBoundary && mouseY > topBoundary && mouseY < bottomBoundary && timeLeft > 0) {
      clicks = clicks + 1;   
   }
   
