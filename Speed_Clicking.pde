@@ -2,6 +2,7 @@
 float leftBoundary, rightBoundary, topBoundary, bottomBoundary;  // Boundaries of click targets
 int clicks;      // Tracks how many clicks made in current game
 int timeLeft = 5;  // Time left in current round
+int bestClicks = 0;
 
 // Runs once
 void setup() {
@@ -46,6 +47,9 @@ void draw() {
 
   // Report time left in round
   text("Time left in round: " + timeLeft, 0, 0, width, height / 5 * 2);
+
+  // Report high score
+  text("High score: " + bestClicks, 0, 0, width, height / 5 * 3);
 }
 
 // Responds to mouse clicks
@@ -56,9 +60,17 @@ void mousePressed() {
     
      if (timeLeft > 0) {        // Game still on, track clicks
        clicks = clicks + 1; 
-     } else {                   // Game has finished, start new game
+     } else {            // Game has finished, start new game
+       
+       // Update high score if needed
+       if (clicks > bestClicks) {
+         bestClicks = clicks;
+       }
+       
+       // Reset clicks and the clock 
        clicks = 0;
        timeLeft = 5;
+       
      }
      
   }
