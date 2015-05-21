@@ -1,7 +1,7 @@
 // Global variables
 float leftBoundary, rightBoundary, topBoundary, bottomBoundary;  // Boundaries of click targets
 int clicks;      // Tracks how many clicks made in current game
-float timeLeft = 5;  // Time left in current round
+int timeLeft = 5;  // Time left in current round
 
 // Runs once
 void setup() {
@@ -45,7 +45,7 @@ void draw() {
   }
 
   // Report time left in round
-  text("Time left in round: " + (int) timeLeft, 0, 0, width, height / 5 * 2);
+  text("Time left in round: " + timeLeft, 0, 0, width, height / 5 * 2);
 }
 
 // Responds to mouse clicks
