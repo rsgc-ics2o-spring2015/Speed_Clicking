@@ -52,8 +52,15 @@ void draw() {
 void mousePressed() {
   
   // Verify that click was inside boundaries of target
-  if (mouseX > leftBoundary && mouseX < rightBoundary && mouseY > topBoundary && mouseY < bottomBoundary && timeLeft > 0) {
-     clicks = clicks + 1;   
+  if (mouseX > leftBoundary && mouseX < rightBoundary && mouseY > topBoundary && mouseY < bottomBoundary) {
+    
+     if (timeLeft > 0) {        // Game still on, track clicks
+       clicks = clicks + 1; 
+     } else {                   // Game has finished, start new game
+       clicks = 0;
+       timeLeft = 5;
+     }
+     
   }
   
 }
